@@ -59,8 +59,43 @@ button:hover {
 }
 
 /* Gift Section */
+/* Coupon Section */
 #couponMessage {
     margin-top: 20px;
+    opacity: 0; /* Start hidden */
+    transform: scale(0.8); /* Start slightly smaller */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for opacity and scale */
+    background-color: #d81b60; /* Initial background color */
+    color: white; /* Text color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Subtle shadow */
+}
+
+/* Celebratory animation */
+@keyframes celebratory {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        background-color: #d81b60;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(-10px);
+        background-color: #f48fb1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        background-color: #d81b60;
+    }
+}
+
+/* When the coupon is revealed */
+#couponMessage.show {
+    opacity: 1; /* Fully visible */
+    transform: scale(1); /* Normal size */
+    animation: celebratory 1s ease; /* Apply the celebratory animation */
 }
 
 .coupon-btn {
@@ -107,4 +142,40 @@ button:hover {
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%;
+}
+
+/* Party Effect */
+#partyEffect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    overflow: hidden;
+    z-index: 9999; /* Ensure it appears above other content */
+    display: none; /* Hidden by default */
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f39c12; /* Yellow color for confetti */
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to pass through */
+    border-radius: 50%;
+    transform: rotate(45deg);
+    animation: confetti-fall 1s ease-in-out forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh) rotate(45deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(100vh) rotate(45deg);
+    }
 }
